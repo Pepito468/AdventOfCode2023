@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
             //printf("%d %d\n", strlen(winnig_numbers_p), strlen(my_numbers_p));
             //printf("%c\n", winnig_numbers_p[0]);
             //filling the 2 arrays with the numbers
-            if (winnig_numbers_p && my_numbers_p) {
+            if (winnig_numbers_p && my_numbers_p) { /* it took 30m ti figure out that strlen was parsing NULL and segfaulting >:( */
                 for (k=0;k<strlen(winnig_numbers_p)-strlen(my_numbers_p);k++){
                     if (winnig_numbers_p[k] >= '0' && winnig_numbers_p[k] <= '9'){
                         //found a number!
