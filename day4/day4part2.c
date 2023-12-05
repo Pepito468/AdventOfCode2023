@@ -9,12 +9,14 @@ int main(int argc, char* argv[]) {
     char buffer[1000][1000];
     int win[100];
     int my[100];
-    int number_of_cards[100];
+    int number_of_cards[1000];
     int i,j,k,h;
     int height = 0;
     int sum_of_points = 0;
     int number_of_wins = 0;
     int winning = 0;
+    int deckcounter=0;
+    int wincounter=0;
 
     int i_win=0;
     int i_my=0;
@@ -28,11 +30,14 @@ int main(int argc, char* argv[]) {
     while (!feof(p)) {
         fscanf(p, " %[^\n]", buffer[height]);
         if(!feof(p)){
-            number_of_cards[height] = 1; //initializing every card to 1 (standard)
+            //number_of_cards[height] = 1; //initializing every card to 1 (standard)
             //printf("%s\n", buffer[height]);
             //buffer[height][strlen(buffer[height])] = '\0';
         }
         height++;
+    }
+    for (i=0;i<1000;i++){
+        number_of_cards[i]=1;
     }
     //buffer[height][strlen(buffer[0])] = '\0';
     fclose(p);
@@ -107,55 +112,40 @@ int main(int argc, char* argv[]) {
                         winning = 0;
                         for (h=0;h<i_win && !winning;h++){
                             if (my[k]==win[h]){
-                                printf("Winning: %d\n",my[k]);
+                                printf("Winning: %d, ",my[k]);
                                 number_of_wins++;
                                 winning++;
                             }
                         }
                     }
+                    printf("\n");
                     k=0;
+                    //number_of_wins *= number_of_cards[i];
                     //printf("%d n win in %d\n",);
-                    while (number_of_wins > 0){
-                        number_of_cards[i+k]++;
-                        k++;
-                        number_of_wins--;
-                    }
+                    deckcounter = number_of_cards[i+k+1];
+                    wincounter = number_of_wins;
+                    do {
+                        while (number_of_wins > 0){
+                            number_of_cards[i+k+2]++;
+                            //printf("added card to deck %d\n",i+k+2);
+                            k++;
+                            number_of_wins--;
+                            
+                        }
+                        if (deckcounter) {
+                            //one more time!
+                            k=0;
+                            deckcounter--;
+                            number_of_wins = wincounter;
+                         }
+                    } while (deckcounter > 0);
                 }
             }
         }
     }
-    printf("card %d:\n",i+1);
-                    for (k=0;k<i_win;k++){
-                        printf("%d ",win[k]);
-                    }
-                    printf(" | ");
-                    for (k=0;k<i_my;k++){
-                        printf("%d ",my[k]);
-                    }
-                    printf("\n");
-
-                    //checking
-                    winning = 0;
-                    number_of_wins = 0;
-                    for (k=0;k<i_my;k++){
-                        winning = 0;
-                        for (h=0;h<i_win && !winning;h++){
-                            if (my[k]==win[h]){
-                                printf("Winning: %d\n",my[k]);
-                                number_of_wins++;
-                                winning++;
-                            }
-                        }
-                    }
-                    k=0;
-                    //printf("%d n win in %d\n",);
-                    while (number_of_wins > 0){
-                        number_of_cards[i+k]++;
-                        k++;
-                        number_of_wins--;
-                    }
-    for (i=0;i<height;i++){
+    for (i=1;i<height+1;i++){
         sum_of_points+=number_of_cards[i];
+        printf("Line %d: [%d]\n",i,number_of_cards[i]);
     }
     printf("result: %d\n",sum_of_points);
     return 0;
