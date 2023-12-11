@@ -38,12 +38,15 @@ int main(int argc, char* argv[]){
     fclose(p);
     printf("\n");
 
-    for (i=0;i<height;i++){
-        checker_num=0;
-        res_slid=0;
-        for (k=0;k<100;k++){
+        for (i=0;i<height;i++){
+            checker_num=0;
+            res_slid=0;
+            for (k=0;k<100;k++){
             checker[k]=-1;
         }
+        
+        
+
             for (j=0;j<strlen(buffer[i]);j++){
             //cleaning checker
 
@@ -80,9 +83,9 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        printf("Row filled with:\n");
+        //printf("Row filled with:\n");
         for (j=0;j<checker_num;j++){
-            printf("%ld ",checker[j]);
+          //  printf("%ld ",checker[j]);
         }
         printf("\n");
 
@@ -104,14 +107,10 @@ int main(int argc, char* argv[]){
                 //seed-to-oil
                 printf("seed-to-oil\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);            
                     }
                 }
 
@@ -120,95 +119,81 @@ int main(int argc, char* argv[]){
                 //soil-to-fert
                 printf("soil-to-fert\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             case 3:
                 //fet-to-water
                 printf("felt-to-water\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             case 4:
                 //water-to-light
                 printf("water-to-light\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             case 5:
                 //light-to-temp
                 printf("light-to-temp\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             case 6:
                 //temp-to-hum
                 printf("temp-to-hum\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             case 7:
                 //hum-to-loc
                 printf("hum-to-loc\n");
                 for (k=0;k<res_num;k++){
-                    //printf("%d ",checker[k]);
-                    for (h=checker[1];h<checker[1]+slider;h++){
-                        if (res_container[k] == h && !already_changed[k]){
-                            already_changed[k]++;
-                            res_container[k] = checker[0]+(h-checker[1]);
-                            printf("Changed %ld to %ld\n",h,res_container[k]);
-                            break;
-                        }
+                    if (res_container[k] >= checker[1] && res_container[k] < (checker[1]+slider) && !already_changed[k]){
+                        already_changed[k]++;
+                        printf("Updating %ld to %ld\n", res_container[k], checker[0]+(res_container[k]-checker[1]));
+                        res_container[k] = checker[0] + (res_container[k]-checker[1]);              
                     }
                 }
+
                 break;
             default:
                 //do nothing
             break;
+        }
+            printf("Seeds:\n");
+        for (k=0;k<res_num;k++){
+            printf("%ld ",res_container[k]); 
         }
     }
 
